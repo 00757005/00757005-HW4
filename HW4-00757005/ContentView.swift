@@ -8,9 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var songData = SongsData()
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            TabView {
+                SongList(songsData: self.songData)
+                    .tabItem {
+                        Text("收錄曲目")
+                        Image(systemName: "music.quarternote.3")
+                    }
+                ChartView(songData: self.songData)
+                    .tabItem{
+                        Text("圖表分析")
+                        Image(systemName: "chart.pie.fill")
+                    }
+            }
+        }
     }
 }
 
